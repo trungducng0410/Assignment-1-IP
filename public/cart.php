@@ -8,7 +8,7 @@ $total = 0;
 
 <br><br>
 <h1>Your Shopping Cart: </h1>
-<br><br>
+<br>
 <table class="table">
     <thead class="thead-light">
         <tr>

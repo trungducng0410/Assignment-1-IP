@@ -4,6 +4,8 @@
 session_start();
 $db = db_connect();
 
+$checkout = $_GET['checkout'] == 'true' ? true : false;
+
 if (isset($_GET['category_id'])) {
     $category_id = $_GET['category_id'];
     if (isset($_GET['product_id'])) {
@@ -13,6 +15,9 @@ if (isset($_GET['category_id'])) {
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    if (isset($_POST['clear'])) {
+        unset($_SESSION['cart']);
+    }
     if (isset($_POST['quantity'])) {
         $product = get_product_by_id($product_id);
         $product_name = $product['product_name'];
@@ -72,9 +77,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="col">
                 <div>
-                    <?php if ($detail_visible) {
-                        include('./product.php');
-                    } ?>
+                    <?php if (!$checkout) {
+                        if ($detail_visible) {
+                            include('./product.php');
+                        }
+                    }
+                    ?>
                 </div>
                 <div>
                     <?php if (isset($_SESSION['cart'])) {

@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 $cart = $_SESSION['cart'];
 $number_of_products = count($cart);
@@ -43,3 +43,23 @@ $total = 0;
     </tbody>
 </table>
 <br>
+<div class="d-flex justify-content-end">
+    <form action=<?php
+                    if (isset($category_id) && isset($product_id)) {
+                        echo ("./index.php?category_id={$category_id}&product_id={$product_id}");
+                    } elseif (isset($category_id) && !isset($product_id)) {
+                        echo ("./index.php?category_id={$category_id}");
+                    } else {
+                        echo ('./index.php');
+                    }
+                    ?> method="post">
+        <button class="btn btn-danger" type="submit" name="clear" value="clear" onclick="return confirm('Do you want to clear your shopping cart?')">Clear</button>
+    </form>
+    <a class="btn btn-success" href=<?php if (isset($category_id) && isset($product_id)) {
+                                        echo ("./index.php?category_id={$category_id}&product_id={$product_id}&checkout=true");
+                                    } elseif (isset($category_id) && !isset($product_id)) {
+                                        echo ("./index.php?category_id={$category_id}&checkout=true");
+                                    } else {
+                                        echo ('./index.php?checkout=true');
+                                    } ?> role="button" style="margin-left: 10px;">Checkout</a>
+</div>

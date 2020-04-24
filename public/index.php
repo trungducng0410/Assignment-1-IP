@@ -69,22 +69,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="./stylesheets/index.css">
     <title>Grocery Store</title>
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col">
+            <div class="col" style="min-height: 810px;">
                 <?php include('./nav/navigation.php'); ?>
             </div>
             <div class="col">
                 <div>
-                    <?php if (!$checkout) {
+                    <?php if (!isset($_GET['checkout'])) {
                         if ($detail_visible) {
                             include('./product.php');
                         }
+                    } else {
+                        include('./form.php');
                     }
                     ?>
                 </div>

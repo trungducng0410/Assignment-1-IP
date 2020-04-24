@@ -9,7 +9,7 @@
 </map>
 
 
-<div style="position:relative;">
+<div>
   <div id="nav1" style="visibility: hidden; position: absolute;">
     <?php
     include("./nav/1.php");

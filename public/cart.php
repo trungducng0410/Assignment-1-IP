@@ -7,7 +7,7 @@ $total = 0;
 
 ?>
 
-<br><br>
+<br>
 <h1>Your Shopping Cart: </h1>
 <br>
 <table class="table">
@@ -60,6 +60,7 @@ $total = 0;
                                         echo ('./index.php?checkout=true');
                                     } ?> role="button" style="margin-left: 10px;" <?php echo $hidden; ?>  onclick='return validateCheckout(<?php echo $number_of_products ?>)'>Checkout</a>
 </div>
+<br>
 
 <script>
     function validateCheckout(number_item) {

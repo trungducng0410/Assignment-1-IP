@@ -29,7 +29,11 @@ $total = 0;
                 <td><?php echo $item['unit_quantity']; ?></td>
                 <td><?php echo $item['required_quantity']; ?></td>
                 <td><?php echo $item['total_cost']; ?> $</td>
-                <td><a class="action" href="">Delete</a></td>
+                <td>
+                    <form action=<?php echo ($_SERVER['REQUEST_URI']); ?> method="post">
+                        <button class="btn btn-danger" type="submit" name="clear" value=<?php echo $key; ?> onclick="return confirm('Do you want to delete this item?')">Delete</button>
+                    </form>
+                </td>
             </tr>
         <?php } ?>
         <tr class="table-info">
@@ -44,16 +48,8 @@ $total = 0;
 </table>
 <br>
 <div class="d-flex justify-content-end">
-    <form action=<?php
-                    if (isset($category_id) && isset($product_id)) {
-                        echo ("./index.php?category_id={$category_id}&product_id={$product_id}");
-                    } elseif (isset($category_id) && !isset($product_id)) {
-                        echo ("./index.php?category_id={$category_id}");
-                    } else {
-                        echo ('./index.php');
-                    }
-                    ?> method="post">
-        <button class="btn btn-danger" type="submit" name="clear" value="clear" onclick="return confirm('Do you want to clear your shopping cart?')">Clear</button>
+    <form action=<?php echo ($_SERVER['REQUEST_URI']); ?> method="post">
+        <button class="btn btn-danger" type="submit" name="clear" value="all" onclick="return confirm('Do you want to clear your shopping cart?')">Clear</button>
     </form>
     <a class="btn btn-success" href=<?php if (isset($category_id) && isset($product_id)) {
                                         echo ("./index.php?category_id={$category_id}&product_id={$product_id}&checkout=true");
@@ -61,5 +57,16 @@ $total = 0;
                                         echo ("./index.php?category_id={$category_id}&checkout=true");
                                     } else {
                                         echo ('./index.php?checkout=true');
-                                    } ?> role="button" style="margin-left: 10px;">Checkout</a>
+                                    } ?> role="button" style="margin-left: 10px;" onclick='return validateCheckout(<?php echo $number_of_products ?>)'>Checkout</a>
 </div>
+
+<script>
+    function validateCheckout(number_item) {
+        if (number_item == 0 || !(number_item)) {
+            alert("Your shopping cart is empty, please select something!");
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>

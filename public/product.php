@@ -18,6 +18,11 @@ echo ("</form>");
         if (value == "" || value == 0) {
             alert("Pleased enter requried quantity");
             return false;
+        } if (value > 50) {
+            alert("You buy too much in once time");
+            return false;
+        } else {
+            return true;
         }
     }
 </script>

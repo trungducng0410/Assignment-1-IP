@@ -1,4 +1,4 @@
-<?php require('../private/database.php') ?>
+<?php require_once('../private/database.php') ?>
 
 <?php
 session_start();
@@ -16,7 +16,11 @@ if (isset($_GET['category_id'])) {
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['clear'])) {
-        unset($_SESSION['cart']);
+        if ($_POST['clear'] == 'all') {
+            $_SESSION['cart'] = [];
+        } else {
+            unset($_SESSION['cart'][$_POST['clear']]);
+        }
     }
     if (isset($_POST['quantity'])) {
         $product = get_product_by_id($product_id);

@@ -36,7 +36,7 @@ $product = get_product_by_id($product_id);
             alert("Pleased enter requried quantity");
             return false;
         }
-        if (value > 50) {
+        if (value > 20) {
             alert("You buy too much in once time");
             return false;
         } else {

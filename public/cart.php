@@ -36,7 +36,8 @@ $total = 0;
                     </form>
                 </td>
             </tr>
-        <?php } ?>
+        <?php }
+        $_SESSION['total'] = $total; ?>
         <tr class="table-info">
             <td colspan="3">Number of products</td>
             <td colspan="3"><?php echo $number_of_products; ?></td>
@@ -50,7 +51,7 @@ $total = 0;
 <br>
 <div class="d-flex justify-content-end">
     <form action=<?php echo ($_SERVER['REQUEST_URI']); ?> method="post">
-        <button class="btn btn-danger" type="submit" name="clear" value="all" <?php echo $hidden; ?>  onclick="return confirm('Do you want to clear your shopping cart?')">Clear</button>
+        <button class="btn btn-danger" type="submit" name="clear" value="all" <?php echo $hidden; ?> onclick="return confirm('Do you want to clear your shopping cart?')">Clear</button>
     </form>
     <a class="btn btn-success" href=<?php if (isset($category_id) && isset($product_id)) {
                                         echo ("./index.php?category_id={$category_id}&product_id={$product_id}&checkout=true");
@@ -58,7 +59,7 @@ $total = 0;
                                         echo ("./index.php?category_id={$category_id}&checkout=true");
                                     } else {
                                         echo ('./index.php?checkout=true');
-                                    } ?> role="button" style="margin-left: 10px;" <?php echo $hidden; ?>  onclick='return validateCheckout(<?php echo $number_of_products ?>)'>Checkout</a>
+                                    } ?> role="button" style="margin-left: 10px;" <?php echo $hidden; ?> onclick='return validateCheckout(<?php echo $number_of_products ?>)'>Checkout</a>
 </div>
 <br>
 
